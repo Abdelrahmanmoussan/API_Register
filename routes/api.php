@@ -21,14 +21,14 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-
-Route::post('/auth/register',[AuthController::class, 'createUser']);
-Route::post('/auth/login',[AuthController::class, 'loginUser']);
+Route::post('/auth/register', [AuthController::class, 'createUser'])->name('api.register');
+Route::post('/user/login', [AuthController::class, 'loginUser'])->name('api.login');
 
 // Route::post('/auth/logout',[AuthController::class, 'logout']);
 
-Route::middleware('auth:sanctum')->group(function (){
-    Route::post('/auth/logout',[AuthController::class, 'logout']);
-    Route::get('user/list', [UserController::class, 'listUsers']);
-
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/auth/logout', [AuthController::class, 'logout'])->name('api.logout');
+    Route::get('/user/list', [UserController::class, 'listUsers'])->name('api.listUserId');
+    Route::get('/user/{user}', [UserController::class, 'listUsers'])->name('api.listUser');
 });
+
