@@ -16,8 +16,21 @@ class UserController extends Controller
     ])
     ->orderBy('id', 'asc')
     ->get();
-    
+
     return response()->json($users);
 
+}
+
+
+
+public function listUserID($userId)
+{
+    $user = User::find($userId);
+
+    if (!$user) {
+        return response()->json(['message' => 'User not found'], 404);
+    }
+
+    return response()->json($user);
 }
 }
