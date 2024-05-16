@@ -16,5 +16,8 @@ class UserController extends Controller
     ])
     ->orderBy('id', 'asc')
     ->get();
+    
+    return response()->json($users);
+
 }
 }
